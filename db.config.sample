@@ -1,0 +1,6 @@
+
+influxdb.url        = 
+influxdb.username   = 
+influxdb.password   = 
+#influxdb.dbName     = 
+influxdb.dbName     = 
