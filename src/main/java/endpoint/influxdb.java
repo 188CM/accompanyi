@@ -1,11 +1,10 @@
-package jersey;
+package endpoint;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -16,13 +15,12 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import database.InfluxDb;
+import databaseHandler.InfluxDb;
 import enums.UrlType;
 import objects.parameter;
 
-@Singleton
-@Path("/api")
-public class NettyEndpoint {
+@Path("/influxDb")
+public class influxdb {
 	
 	
 	@GET

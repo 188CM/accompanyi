@@ -1,4 +1,4 @@
-package database;
+package databaseHandler;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
