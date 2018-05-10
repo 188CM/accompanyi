@@ -1,6 +1,6 @@
 package objects;
 
-public class parameter {
+public class Parameter {
 	long startTime;
 	long endTime;
 	String Url;

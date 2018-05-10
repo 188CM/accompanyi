@@ -1,4 +1,4 @@
-package endpoint;
+package oldEndpoint;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -17,10 +17,10 @@ import javax.ws.rs.core.Response.Status;
 
 import databaseHandler.InfluxDb;
 import enums.UrlType;
-import objects.parameter;
+import objects.Parameter;
 
 @Path("/influxDb")
-public class influxdb {
+public class Influxdb {
 	
 	
 	@GET
@@ -54,7 +54,7 @@ public class influxdb {
 		}
 		
 		
-		parameter parms = new parameter();
+		Parameter parms = new Parameter();
 		parms.setStartTime(startD.getTime());
 		parms.setEndTime(endD.getTime());
 		parms.setUrl(msg);

@@ -12,10 +12,10 @@ public enum UrlType {
 		return false;
 	}
 	
+	@SuppressWarnings("unused")
 	final private String urlType;
 	UrlType(String urlType) {
 		this.urlType = urlType;
 	}
-	
 
 }

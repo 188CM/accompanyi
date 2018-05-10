@@ -8,16 +8,27 @@ public class HttpServer {
     public static final int PORT = 8080;
 
     public static void main(String[] args) throws Exception {
-    	
+   	
     	 Server server = new Server(PORT); 	
-         ServletHolder servletHolder = new ServletHolder(org.glassfish.jersey.servlet.ServletContainer.class);
+    	 
+         ServletHolder rootServletHolder = new ServletHolder(org.glassfish.jersey.servlet.ServletContainer.class);
+         rootServletHolder.setInitParameter("com.sun.jersey.config.property.resourceConfigClass", "com.sun.jersey.api.core.PackagesResourceConfig");
+         rootServletHolder.setInitParameter("jersey.config.server.provider.packages", "grafanaEndPoint");// set EndPoint
+         rootServletHolder.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true");
+                    	 
+    	 ServletHolder servletHolder = new ServletHolder(org.glassfish.jersey.servlet.ServletContainer.class);
          servletHolder.setInitParameter("com.sun.jersey.config.property.resourceConfigClass", "com.sun.jersey.api.core.PackagesResourceConfig");
          servletHolder.setInitParameter("jersey.config.server.provider.packages", "endpoint");// set EndPoint
          servletHolder.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true");
+         
+         
+         
          ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
          server.setHandler(contextHandler);
          
-         contextHandler.addServlet(servletHolder, "/api/*");
+         contextHandler.addServlet(rootServletHolder, "/*");
+         contextHandler.addServlet(servletHolder, "/old/*");
+
     	
          
          try {
