@@ -18,7 +18,7 @@ public class HttpServer {
                     	 
     	 ServletHolder servletHolder = new ServletHolder(org.glassfish.jersey.servlet.ServletContainer.class);
          servletHolder.setInitParameter("com.sun.jersey.config.property.resourceConfigClass", "com.sun.jersey.api.core.PackagesResourceConfig");
-         servletHolder.setInitParameter("jersey.config.server.provider.packages", "endpoint");// set EndPoint
+         servletHolder.setInitParameter("jersey.config.server.provider.packages", "oldEndpoint");// set EndPoint
          servletHolder.setInitParameter("com.sun.jersey.api.json.POJOMappingFeature", "true");
          
          
@@ -26,8 +26,8 @@ public class HttpServer {
          ServletContextHandler contextHandler = new ServletContextHandler(ServletContextHandler.SESSIONS);
          server.setHandler(contextHandler);
          
-         contextHandler.addServlet(rootServletHolder, "/*");
-         contextHandler.addServlet(servletHolder, "/old/*");
+         contextHandler.addServlet(rootServletHolder, "/grafana/*");
+         contextHandler.addServlet(servletHolder, "/api/*");
 
     	
          

@@ -19,11 +19,12 @@ public class Root {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public Response get() {
-    	return Response.noContent()
-                .header("Access-Control-Allow-Headers", "accept, content-type")
-                .header("Access-Control-Allow-Methods", "POST")
-                .header("Access-Control-Allow-Origin", "*")
-                .build();
+    	return Response.status(Status.OK).entity(Status.OK.toString()).build();
+//    	return Response.noContent()
+//                .header("Access-Control-Allow-Headers", httpRequest.getContentType())
+//                .header("Access-Control-Allow-Methods", httpRequest.getMethod())
+//                .header("Access-Control-Allow-Origin", "*")
+//                .build();
     }
 	@POST
     @Produces(MediaType.TEXT_PLAIN)

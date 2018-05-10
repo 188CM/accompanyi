@@ -2,9 +2,9 @@ package objects;
 
 import java.util.ArrayList;
 
-public class Grafana_Series {
+public class Metric_Series {
 	private String target;
-	private ArrayList<Object[]> datapoints = new ArrayList<Object[]>();
+	private ArrayList<Number[]> datapoints = new ArrayList<Number[]>();
 //	private String instanceId;
 	
 	
@@ -14,10 +14,10 @@ public class Grafana_Series {
 	public void setName(String target) {
 		this.target = target;
 	}
-	public ArrayList<Object[]> getPoints() {
+	public ArrayList<Number[]> getPoints() {
 		return datapoints;
 	}
-	public void setPoints(Object[] datapoints) {
+	public void setPoints(Number[] datapoints) {
 		this.datapoints.add(datapoints);
 	}
 //	public String getInstanceId() {

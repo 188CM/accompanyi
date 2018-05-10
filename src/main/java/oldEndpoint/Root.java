@@ -13,7 +13,7 @@ public class Root {
 	
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
-    public Response getMyResources() {		
+    public Response get() {		
 		return Response.status(Status.OK).entity(Status.OK.toString()).build();
 	}
 	

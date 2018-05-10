@@ -1,6 +1,8 @@
 package grafanaEndPoint;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
@@ -13,12 +15,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.amazonaws.services.cloudwatch.model.Datapoint;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import common.Util;
 import databaseHandler.CloudWatch;
+import objects.Metric_Series;
 import objects.Range;
 
 @Path("/query")
@@ -38,6 +43,7 @@ public class Query {
 	}
 		
 	
+	@SuppressWarnings("unchecked")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,12 +71,45 @@ public class Query {
 	
 		CloudWatch db = new CloudWatch();
 		
-		Object ret = db.select(metricType, dt1, dt2);
 		
-		System.out.println(ret);
-		
-		
-		return Response.status(Status.OK).entity(ret).build();
+		Object ret = db.select(metricType, dt1, dt2);		
+				
+	  	Metric_Series series_minimum = new Metric_Series();
+    	series_minimum.setName(metricType+"_Minimum");
+
+    	Metric_Series series_maximum= new Metric_Series();
+    	series_maximum.setName(metricType+"_Maximum");
+    	
+    	Metric_Series series_average= new Metric_Series();
+    	series_average.setName(metricType+"_Average");
+    	
+    	Metric_Series series_sum= new Metric_Series();
+    	series_sum.setName(metricType+"_Sum");
+    	        	
+    	
+        for (Datapoint aDataPoint : (List<Datapoint>)ret) {	        	
+//        	{"timestamp":"May 9, 2018 2:30:00 AM", "sampleCount":5.0,
+//        	"average":0.26783365749840604,"sum":1.33916828749203,
+//        	"minimum":0.166666666676368, "maximum":0.338983050842525
+
+        	series_minimum.setPoints(new Number[] {aDataPoint.getMinimum(),aDataPoint.getTimestamp().getTime()});
+        	series_maximum.setPoints(new Number[] {aDataPoint.getMaximum(),aDataPoint.getTimestamp().getTime()});
+        	series_average.setPoints(new Number[] {aDataPoint.getAverage(),aDataPoint.getTimestamp().getTime()});
+        	series_sum.setPoints(new Number[] {aDataPoint.getSum(),aDataPoint.getTimestamp().getTime()});
+        }
+   
+        ArrayList<Metric_Series> series = new ArrayList<Metric_Series>();
+        
+        series.add(series_minimum);
+        series.add(series_maximum);
+        series.add(series_average);
+        series.add(series_sum);
+				
+        
+        String resStr = new Gson().toJson(series);
+		System.out.println(resStr);
+			
+		return Response.status(Status.OK).entity(resStr).build();
 	}
 	
 
