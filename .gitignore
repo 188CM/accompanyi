@@ -29,3 +29,9 @@ gradlew
 .settings/
 gradle/wrapper/gradle-wrapper.properties
 *.config
+
+# Intellij
+.idea/
+*.iml
+*.iws
+ 

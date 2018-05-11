@@ -1,4 +1,4 @@
-package objects;
+package models;
 
 import java.time.Instant;
 
@@ -6,7 +6,7 @@ import org.influxdb.annotation.Column;
 import org.influxdb.annotation.Measurement;
 
 @Measurement(name = "cpu")
-public class cpu {
+public class Cpu {
 
 	@Column(name = "time")
 	private Instant time;

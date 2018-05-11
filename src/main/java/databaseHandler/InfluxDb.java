@@ -1,4 +1,4 @@
-package database;
+package databaseHandler;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,8 +14,8 @@ import org.influxdb.impl.InfluxDBResultMapper;
 
 import com.google.gson.Gson;
 
-import objects.parameter;
-import objects.cpu;
+import models.Cpu;
+import models.Parameter;
 
 public class InfluxDb {
     private Properties config = new Properties();
@@ -49,7 +49,7 @@ public class InfluxDb {
     
     
     
-    public String select(parameter parms)
+    public String select(Parameter parms)
     {
     	
 //    	parms.setStartTime("1519620605454");
@@ -66,7 +66,7 @@ public class InfluxDb {
 
 
     	InfluxDBResultMapper resultMapper = new InfluxDBResultMapper();
-    	List<cpu> cpuList = resultMapper.toPOJO(queryResult, cpu.class);
+    	List<Cpu> cpuList = resultMapper.toPOJO(queryResult, Cpu.class);
     	
     	
     	
