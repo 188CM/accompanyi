@@ -14,8 +14,8 @@ import org.influxdb.impl.InfluxDBResultMapper;
 
 import com.google.gson.Gson;
 
-import objects.Parameter;
-import objects.Cpu;
+import models.Cpu;
+import models.Parameter;
 
 public class InfluxDb {
     private Properties config = new Properties();

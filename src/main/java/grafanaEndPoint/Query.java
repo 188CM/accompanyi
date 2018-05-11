@@ -23,8 +23,8 @@ import com.google.gson.JsonParser;
 
 import common.Util;
 import databaseHandler.CloudWatch;
-import objects.Metric_Series;
-import objects.Range;
+import models.MetricSeries;
+import models.Range;
 
 @Path("/query")
 public class Query {
@@ -74,16 +74,16 @@ public class Query {
 		
 		Object ret = db.select(metricType, dt1, dt2);		
 				
-	  	Metric_Series series_minimum = new Metric_Series();
+	  	MetricSeries series_minimum = new MetricSeries();
     	series_minimum.setName(metricType+"_Minimum");
 
-    	Metric_Series series_maximum= new Metric_Series();
+    	MetricSeries series_maximum= new MetricSeries();
     	series_maximum.setName(metricType+"_Maximum");
     	
-    	Metric_Series series_average= new Metric_Series();
+    	MetricSeries series_average= new MetricSeries();
     	series_average.setName(metricType+"_Average");
     	
-    	Metric_Series series_sum= new Metric_Series();
+    	MetricSeries series_sum= new MetricSeries();
     	series_sum.setName(metricType+"_Sum");
     	        	
     	
@@ -98,7 +98,7 @@ public class Query {
         	series_sum.setPoints(new Number[] {aDataPoint.getSum(),aDataPoint.getTimestamp().getTime()});
         }
    
-        ArrayList<Metric_Series> series = new ArrayList<Metric_Series>();
+        ArrayList<MetricSeries> series = new ArrayList<MetricSeries>();
         
         series.add(series_minimum);
         series.add(series_maximum);

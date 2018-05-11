@@ -24,7 +24,7 @@ import com.google.gson.Gson;
 import common.Util;
 import databaseHandler.CloudWatch;
 import enums.MetricType;
-import objects.ChartObject;
+import models.ChartObject;
 
 @Path("/awsCloudWatch")
 public class AwsCloudWatch {

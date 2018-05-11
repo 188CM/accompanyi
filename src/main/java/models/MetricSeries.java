@@ -2,7 +2,7 @@ package objects;
 
 import java.util.ArrayList;
 
-public class Metric_Series {
+public class MetricSeries {
 	private String target;
 	private ArrayList<Number[]> datapoints = new ArrayList<Number[]>();
 //	private String instanceId;
