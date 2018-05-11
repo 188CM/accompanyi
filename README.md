@@ -2,7 +2,7 @@
 
 accompany + API = accompanyi
 
-##TL;DR
+## TL;DR
 
 - CloudWatch에서 제공하는 인스턴스 시스템 정보를 API로 제공
 - Grafana Simple Json 플러그인을 활용한 Grafana 그래프 표현
